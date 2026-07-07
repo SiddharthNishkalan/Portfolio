@@ -1,0 +1,262 @@
+/* ═══════════════════════════════════════════
+   SIDDHARTH NISHKALAN — Animations
+   animations.css · All keyframes & reveal states
+═══════════════════════════════════════════ */
+
+/* ─── HERO ENTRANCE ─── */
+.hero-eyebrow {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards .2s;
+}
+#hero-line1 {
+  opacity: 0; clip-path: inset(0 100% 0 0);
+  animation: lineReveal .75s cubic-bezier(.4,0,.2,1) forwards .4s;
+}
+#hero-line2 {
+  opacity: 0; clip-path: inset(0 100% 0 0);
+  animation: lineReveal .75s cubic-bezier(.4,0,.2,1) forwards .62s;
+}
+.hero-sub {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards .85s;
+}
+.hero-chips {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards 1.05s;
+}
+.hero-ctas {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards 1.2s;
+}
+.scroll-cue {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards 1.6s, scrollBounce 2.5s ease-in-out 2.2s infinite;
+}
+
+@keyframes lineReveal {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0% 0 0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-9px); }
+}
+
+/* ─── NAME GLITCH EFFECT ─── */
+.hero-name-line {
+  position: relative;
+}
+.hero-name-line::before,
+.hero-name-line::after {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0;
+  width: 100%; height: 100%;
+  font-family: inherit; font-weight: inherit; font-size: inherit;
+  clip-path: inset(0);
+}
+.hero-name-line::before {
+  color: rgba(255, 0, 80, .6);
+  animation: glitchA 5s ease-in-out 2s infinite;
+}
+.hero-name-line::after {
+  color: rgba(0, 212, 255, .6);
+  animation: glitchB 5s ease-in-out 2.05s infinite;
+}
+@keyframes glitchA {
+  0%, 88%, 100% { clip-path: inset(100% 0 0 0); transform: translate(0); }
+  90%            { clip-path: inset(10% 0 75% 0); transform: translate(-3px, 1px); }
+  92%            { clip-path: inset(55% 0 25% 0); transform: translate(3px, -1px); }
+  94%            { clip-path: inset(30% 0 55% 0); transform: translate(-2px, 0); }
+  96%            { clip-path: inset(75% 0 10% 0); transform: translate(0, 2px); }
+  98%            { clip-path: inset(100% 0 0 0); transform: translate(0); }
+}
+@keyframes glitchB {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+  90%            { clip-path: inset(75% 0 10% 0); transform: translate(3px, -1px); }
+  92%            { clip-path: inset(25% 0 55% 0); transform: translate(-3px, 1px); }
+  94%            { clip-path: inset(60% 0 20% 0); transform: translate(2px, 0); }
+  96%            { clip-path: inset(10% 0 80% 0); transform: translate(0, -2px); }
+  98%            { clip-path: inset(0 0 100% 0); transform: translate(0); }
+}
+
+/* ─── GESTURE SVG ANIMATIONS ─── */
+.gesture-hand {
+  animation: gesturePulse 3s ease-in-out infinite;
+}
+@keyframes gesturePulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(0,212,255,.3)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(0,212,255,.7)); }
+}
+.gesture-trail {
+  animation: drawTrail 2.5s ease-in-out 1s infinite;
+}
+@keyframes drawTrail {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.gesture-dot {
+  animation: dotAppear .3s ease forwards;
+  animation-delay: calc(var(--i, 0) * 180ms + 1.2s);
+}
+.gesture-dot:nth-child(1) { --i: 0; }
+.gesture-dot:nth-child(2) { --i: 1; }
+.gesture-dot:nth-child(3) { --i: 2; }
+.gesture-dot:nth-child(4) { --i: 3; }
+@keyframes dotAppear {
+  from { opacity: 0; r: 1; }
+  to   { opacity: 1; r: 3; }
+}
+
+/* ─── SCROLL REVEAL CLASSES ─── */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal-left.in { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal-right.in { opacity: 1; transform: translateX(0); }
+
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal-stagger.in > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.0s; }
+.reveal-stagger.in > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.1s; }
+.reveal-stagger.in > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:.2s; }
+.reveal-stagger.in > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:.3s; }
+.reveal-stagger.in > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:.4s; }
+
+/* ─── SECTION BACKGROUND PULSE ─── */
+#skills::after,
+#projects::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,.03) 0%, transparent 60%);
+  animation: bgPulse 6s ease-in-out infinite alternate;
+}
+@keyframes bgPulse {
+  from { opacity: .4; }
+  to   { opacity: 1; }
+}
+
+/* ─── CARD HOVER SHINE ─── */
+.proj-card::after {
+  content: '';
+  position: absolute; top: -60%; left: -60%;
+  width: 60%; height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,.04) 50%,
+    transparent 60%
+  );
+  transition: left .6s ease, top .6s ease;
+  pointer-events: none;
+}
+.proj-card:hover::after { left: 120%; top: -60%; }
+
+/* ─── TIMELINE ENTRANCE ─── */
+.timeline-item .tl-card {
+  transition: border-color .3s, box-shadow .3s, transform .3s,
+              opacity .55s ease, translate .55s ease;
+  opacity: 0; translate: 0 20px;
+}
+.timeline-item.in .tl-card { opacity: 1; translate: 0 0; }
+.timeline-item:nth-child(2) .tl-card { transition-delay: .1s; }
+.timeline-item:nth-child(3) .tl-card { transition-delay: .2s; }
+.timeline-item:nth-child(4) .tl-card { transition-delay: .3s; }
+
+/* ─── SKILL CARD STAGGER (set by JS) ─── */
+/* base state defined in style.css; JS adds .in with a timeout offset */
+
+/* ─── STAT NUMBER COUNTER GLOW ─── */
+.stat-num.counting { color: var(--cyan); text-shadow: 0 0 20px rgba(0,212,255,.6); }
+
+/* ─── NAV LINK ACTIVE UNDERLINE ─── */
+/* handled in style.css via .active class */
+
+/* ─── CHIP HOVER ─── */
+.hero-chips .chip:nth-child(1) { animation-delay: 1.1s; }
+.hero-chips .chip:nth-child(2) { animation-delay: 1.2s; }
+.hero-chips .chip:nth-child(3) { animation-delay: 1.3s; }
+.hero-chips .chip:nth-child(4) { animation-delay: 1.4s; }
+.hero-chips .chip:nth-child(5) { animation-delay: 1.5s; }
+
+/* ─── PROGRESS BAR STRIPE ─── */
+@keyframes stripe {
+  from { background-position: 0 0; }
+  to   { background-position: 30px 0; }
+}
+
+/* ─── CURSOR TRAIL FADE ─── */
+@keyframes trailFade {
+  from { opacity: .7; }
+  to   { opacity: 0; }
+}
+
+/* ─── HERO BACKGROUND CIRCUIT LINES ─── */
+.grid-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    linear-gradient(90deg, transparent 49.5%, rgba(0,212,255,.03) 50%, transparent 50.5%),
+    linear-gradient(transparent 49.5%, rgba(0,212,255,.03) 50%, transparent 50.5%);
+  animation: gridPulse 4s ease-in-out infinite alternate;
+}
+@keyframes gridPulse {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── FOOTER REVEAL ─── */
+footer {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+footer.in { opacity: 1; transform: translateY(0); }
+
+/* ─── FPS COUNTER BLIP ─── */
+#fps-count { animation: fpsBlip 1s step-end infinite; }
+@keyframes fpsBlip {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .6; }
+}
+
+/* ─── ARCH NODE PULSE (on hover) ─── */
+.arch-node:hover {
+  background: var(--purple-dim);
+  box-shadow: 0 0 12px rgba(167,139,250,.2);
+}
+
+/* ─── BRAND BADGE PULSE ─── */
+.brand-badge {
+  animation: badgePulse 3s ease-in-out infinite alternate;
+}
+@keyframes badgePulse {
+  from { box-shadow: 0 0 10px rgba(0,212,255,.4); }
+  to   { box-shadow: 0 0 22px rgba(0,212,255,.75); }
+}
+
+/* ─── CONCEPT CHIP WAVE ─── */
+.concept-chip:nth-child(1) { transition-delay: .05s; }
+.concept-chip:nth-child(2) { transition-delay: .12s; }
+.concept-chip:nth-child(3) { transition-delay: .19s; }
+.concept-chip:nth-child(4) { transition-delay: .26s; }
+.concept-chip:nth-child(5) { transition-delay: .33s; }

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddharth Nishkalan | IT Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <canvas id="cursor-trail"></canvas>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- SCANLINES OVERLAY -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav">
+    <a href="#hero" class="nav-brand">
+      <span class="brand-badge">SN</span>
+      <span class="brand-text">SIDDHARTH NISHKALAN</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <canvas id="particles"></canvas>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="grid-vignette" aria-hidden="true"></div>
+
+    <!-- Animated hand-gesture SVG (Air Canva theme) -->
+    <div class="hero-gesture" aria-hidden="true">
+      <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" id="gesture-svg">
+        <!-- Hand outline -->
+        <path class="gesture-hand" d="M150 260 C100 260 70 230 70 200 L70 140 C70 128 78 120 90 120 C90 120 90 100 102 100 C102 80 114 80 114 90 L114 110 C114 96 126 92 126 104 L126 114 C126 100 138 100 138 112 L138 120 C148 108 162 112 162 126 L162 200 C170 200 178 192 178 200 L178 220 C178 244 165 260 150 260Z"
+          stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,.04)"/>
+        <!-- Pointing finger highlight -->
+        <path class="gesture-finger" d="M138 112 L138 82 C138 70 150 68 150 80 L150 120"
+          stroke="#00d4ff" stroke-width="1.8" fill="none"/>
+        <!-- Drawing trail -->
+        <path class="gesture-trail" d="M155 85 C170 70 200 60 220 75 C240 90 245 115 230 130 C215 145 190 140 175 125"
+          stroke="#00d4ff" stroke-width="1.5" fill="none" stroke-dasharray="200" stroke-dashoffset="200"/>
+        <!-- Landmark dots -->
+        <circle class="gesture-dot" cx="150" cy="82" r="3" fill="#00d4ff" opacity="0"/>
+        <circle class="gesture-dot" cx="126" cy="106" r="3" fill="#00d4ff" opacity="0"/>
+        <circle class="gesture-dot" cx="162" cy="118" r="3" fill="#00d4ff" opacity="0"/>
+        <circle class="gesture-dot" cx="102" cy="102" r="3" fill="#00d4ff" opacity="0"/>
+        <!-- Grid overlay (CV theme) -->
+        <rect x="50" y="50" width="200" height="200" stroke="rgba(0,212,255,.06)" stroke-width="1" fill="none"/>
+        <line x1="50" y1="116" x2="250" y2="116" stroke="rgba(0,212,255,.05)" stroke-width=".5"/>
+        <line x1="50" y1="183" x2="250" y2="183" stroke="rgba(0,212,255,.05)" stroke-width=".5"/>
+        <line x1="116" y1="50" x2="116" y2="250" stroke="rgba(0,212,255,.05)" stroke-width=".5"/>
+        <line x1="183" y1="50" x2="183" y2="250" stroke="rgba(0,212,255,.05)" stroke-width=".5"/>
+        <!-- Corner brackets -->
+        <path d="M50 65 L50 50 L65 50" stroke="rgba(0,212,255,.35)" stroke-width="1.5" fill="none"/>
+        <path d="M235 50 L250 50 L250 65" stroke="rgba(0,212,255,.35)" stroke-width="1.5" fill="none"/>
+        <path d="M50 235 L50 250 L65 250" stroke="rgba(0,212,255,.35)" stroke-width="1.5" fill="none"/>
+        <path d="M235 250 L250 250 L250 235" stroke="rgba(0,212,255,.35)" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="gesture-label">
+        <span class="gl-tag">LANDMARK DETECTION</span>
+        <span class="gl-fps">FPS: <em id="fps-count">60</em></span>
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">// B.Tech IT · SKCE · CGPA 9.45</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-name">
+        <span class="hero-name-line" id="hero-line1">SIDDHARTH</span>
+        <span class="hero-name-line accent" id="hero-line2">NISHKALAN</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="typed-container">
+          <span id="typed-role"></span><span class="typed-cursor">|</span>
+        </span>
+      </p>
+      <div class="hero-chips">
+        <span class="chip">Python</span>
+        <span class="chip">OpenCV</span>
+        <span class="chip">C++</span>
+        <span class="chip">Computer Vision</span>
+        <span class="chip">DSA</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+        <a href="mailto:s.siddharthnishkalan@gmail.com" class="btn-icon" title="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills" class="section">
+    <div class="hex-bg" aria-hidden="true"></div>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-tag">// technical skills</span>
+        <h2 class="section-title">MY TOOLKIT</h2>
+        <p class="section-sub">Languages, frameworks, and tools I work with.</p>
+      </div>
+
+      <div class="skills-categories">
+
+        <!-- Languages -->
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            <span class="cat-title">Programming Languages</span>
+          </div>
+          <div class="skill-row" id="lang-row">
+
+            <div class="skill-card" title="C" data-level="85">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <text x="13" y="43" font-family="'Exo 2',sans-serif" font-weight="900" font-size="32" fill="#00d4ff">C</text>
+                </svg>
+              </div>
+              <span class="sc-label">C</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:85%"></div></div>
+            </div>
+
+            <div class="skill-card" title="C++" data-level="82">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <text x="5" y="43" font-family="'Exo 2',sans-serif" font-weight="900" font-size="26" fill="#00d4ff">C++</text>
+                </svg>
+              </div>
+              <span class="sc-label">C++</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:82%"></div></div>
+            </div>
+
+            <div class="skill-card highlight" title="Python" data-level="90">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 10 Q13 10 13 19 L13 31 L30 31 L30 35 L13 35 Q5 35 5 43 Q5 51 13 51 L22 51 L22 35"
+                    stroke="#00d4ff" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                  <path d="M38 50 Q47 50 47 41 L47 29 L30 29 L30 25 L47 25 Q55 25 55 17 Q55 9 47 9 L38 9 L38 25"
+                    stroke="#00d4ff" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                  <circle cx="20" cy="16" r="3" fill="#00d4ff"/>
+                  <circle cx="40" cy="44" r="3" fill="#00d4ff"/>
+                </svg>
+              </div>
+              <span class="sc-label">Python</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:90%"></div></div>
+            </div>
+
+            <div class="skill-card" title="SQL" data-level="80">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="30" cy="16" rx="18" ry="7" stroke="#00d4ff" stroke-width="1.8"/>
+                  <path d="M12 16 L12 44 Q12 51 30 51 Q48 51 48 44 L48 16" stroke="#00d4ff" stroke-width="1.8" fill="none"/>
+                  <path d="M12 26 Q12 33 30 33 Q48 33 48 26" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+                  <path d="M12 36 Q12 43 30 43 Q48 43 48 36" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <span class="sc-label">SQL</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:80%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Web -->
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </span>
+            <span class="cat-title">Web Technologies</span>
+          </div>
+          <div class="skill-row" id="web-row">
+
+            <div class="skill-card" title="HTML5" data-level="88">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 8 L14 52 L30 57 L46 52 L50 8Z" stroke="#00d4ff" stroke-width="1.8" fill="rgba(0,212,255,.05)"/>
+                  <path d="M20 20 L40 20 L38 36 L30 39 L22 36Z" stroke="#00d4ff" stroke-width="1.4" fill="none"/>
+                </svg>
+              </div>
+              <span class="sc-label">HTML5</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:88%"></div></div>
+            </div>
+
+            <div class="skill-card" title="CSS3" data-level="82">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 8 L14 52 L30 57 L46 52 L50 8Z" stroke="#a78bfa" stroke-width="1.8" fill="rgba(167,139,250,.05)"/>
+                  <text x="14" y="40" font-family="'Exo 2',sans-serif" font-weight="900" font-size="18" fill="#a78bfa">CSS</text>
+                </svg>
+              </div>
+              <span class="sc-label">CSS3</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:82%;--clr:#a78bfa"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CS Concepts -->
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <span class="cat-title">Core CS Concepts</span>
+          </div>
+          <div class="concept-chips" id="concept-chips">
+            <span class="concept-chip" data-delay="0">Data Structures &amp; Algorithms</span>
+            <span class="concept-chip" data-delay="80">Object-Oriented Programming</span>
+            <span class="concept-chip" data-delay="160">DBMS</span>
+            <span class="concept-chip" data-delay="240">Computer Vision</span>
+            <span class="concept-chip" data-delay="320">System Design</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category reveal">
+          <div class="cat-header">
+            <span class="cat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </span>
+            <span class="cat-title">Tools &amp; Platforms</span>
+          </div>
+          <div class="skill-row" id="tools-row">
+
+            <div class="skill-card" title="Git" data-level="85">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="18" cy="16" r="6" stroke="#f05030" stroke-width="1.8"/>
+                  <circle cx="42" cy="16" r="6" stroke="#f05030" stroke-width="1.8"/>
+                  <circle cx="18" cy="44" r="6" stroke="#f05030" stroke-width="1.8"/>
+                  <path d="M18 22 L18 38 M24 16 L36 16 M24 44 L30 44 Q38 44 38 36 L38 22"
+                    stroke="#f05030" stroke-width="1.8" fill="none"/>
+                </svg>
+              </div>
+              <span class="sc-label">Git</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:85%;--clr:#f05030"></div></div>
+            </div>
+
+            <div class="skill-card" title="GitHub" data-level="85">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30 5 C16 5 5 16 5 30 C5 41.1 12.3 50.4 22.4 53.5 C23.6 53.7 24 53 24 52.4 L24 47.6 C16.8 49.1 15.4 44.2 15.4 44.2 C14.3 41.5 12.7 40.8 12.7 40.8 C10.5 39.3 12.8 39.3 12.8 39.3 C15.2 39.5 16.5 41.8 16.5 41.8 C18.6 45.4 22 44.4 24.1 43.8 C24.3 42.2 25 41.1 25.8 40.5 C19.9 39.8 13.7 37.6 13.7 27.3 C13.7 24.7 14.6 22.6 16.5 21 C16.2 20.3 15.4 17.9 16.7 14.6 C18.7 13.8 24 17.1 24 17.1 C26.3 16.5 28.7 16.2 31 16.2 C33.3 16.2 35.7 16.5 38 17.1 C38 17.1 43.3 13.8 45.3 14.6 C46.6 17.9 45.8 20.3 45.5 21 C47.4 22.6 48.3 24.7 48.3 27.3 C48.3 37.6 42.1 39.8 36.1 40.5 C37.2 41.4 38.1 43.1 38.1 45.7 L38.1 52.4 C38.1 53 38.5 53.7 39.7 53.5 C49.7 50.4 57 41.1 57 30 C57 16 46 5 30 5Z"
+                    fill="#00d4ff" opacity=".7"/>
+                </svg>
+              </div>
+              <span class="sc-label">GitHub</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:85%"></div></div>
+            </div>
+
+            <div class="skill-card" title="MySQL" data-level="80">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="30" cy="18" rx="18" ry="7" stroke="#f98500" stroke-width="1.8"/>
+                  <path d="M12 18 L12 42 Q12 49 30 49 Q48 49 48 42 L48 18" stroke="#f98500" stroke-width="1.8" fill="none"/>
+                  <path d="M12 28 Q12 35 30 35 Q48 35 48 28" stroke="#f98500" stroke-width="1.4" fill="none"/>
+                  <path d="M12 38 Q12 45 30 45 Q48 45 48 38" stroke="#f98500" stroke-width="1" fill="none" opacity=".5"/>
+                </svg>
+              </div>
+              <span class="sc-label">MySQL</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:80%;--clr:#f98500"></div></div>
+            </div>
+
+            <div class="skill-card" title="VS Code" data-level="92">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M42 8 L8 26 L8 34 L42 52 L52 46 L52 14Z" stroke="#0078d7" stroke-width="1.8" fill="rgba(0,120,215,.07)"/>
+                  <path d="M42 8 L42 26 L22 36 L8 26" stroke="#0078d7" stroke-width="1.5" fill="none"/>
+                  <path d="M42 52 L42 34 L22 24 L8 34" stroke="#0078d7" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <span class="sc-label">VS Code</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:92%;--clr:#0078d7"></div></div>
+            </div>
+
+            <!-- OpenCV -->
+            <div class="skill-card highlight" title="OpenCV" data-level="88">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="10" stroke="#00d4ff" stroke-width="1.8"/>
+                  <circle cx="38" cy="22" r="10" stroke="#39d353" stroke-width="1.8"/>
+                  <circle cx="30" cy="36" r="10" stroke="#f05030" stroke-width="1.8"/>
+                  <circle cx="30" cy="27" r="4" fill="rgba(0,212,255,.2)" stroke="none"/>
+                </svg>
+              </div>
+              <span class="sc-label">OpenCV</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:88%"></div></div>
+            </div>
+
+            <!-- MediaPipe -->
+            <div class="skill-card" title="MediaPipe" data-level="85">
+              <div class="sc-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- hand landmark mini -->
+                  <circle cx="30" cy="48" r="4" stroke="#00d4ff" stroke-width="1.5"/>
+                  <circle cx="18" cy="36" r="3" stroke="#00d4ff" stroke-width="1.5"/>
+                  <circle cx="30" cy="30" r="3" stroke="#00d4ff" stroke-width="1.5"/>
+                  <circle cx="42" cy="36" r="3" stroke="#00d4ff" stroke-width="1.5"/>
+                  <circle cx="30" cy="16" r="3" stroke="#00d4ff" stroke-width="1.5"/>
+                  <line x1="30" y1="44" x2="18" y2="39" stroke="#00d4ff" stroke-width="1"/>
+                  <line x1="30" y1="44" x2="30" y2="33" stroke="#00d4ff" stroke-width="1"/>
+                  <line x1="30" y1="44" x2="42" y2="39" stroke="#00d4ff" stroke-width="1"/>
+                  <line x1="30" y1="27" x2="30" y2="19" stroke="#00d4ff" stroke-width="1"/>
+                </svg>
+              </div>
+              <span class="sc-label">MediaPipe</span>
+              <div class="sc-bar"><div class="sc-fill" style="--pct:85%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects" class="section alt-bg">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-tag">// featured work</span>
+        <h2 class="section-title">PROJECTS</h2>
+        <p class="section-sub">Real applications built from concept to prototype.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: Air Canva -->
+        <article class="proj-card reveal-left" id="proj-aircanva">
+          <div class="proj-meta">
+            <span class="proj-num">01</span>
+            <span class="proj-status active">Completed</span>
+          </div>
+          <h3 class="proj-title">AIR CANVA</h3>
+          <p class="proj-subtitle">Hand Gesture Drawing Application</p>
+          <p class="proj-desc">
+            Touch-free virtual drawing application using real-time hand gesture recognition.
+            MediaPipe landmark tracking enables users to draw on a digital canvas through natural 
+            hand movements — no physical input device needed.
+          </p>
+
+          <!-- Terminal code block -->
+          <div class="proj-terminal">
+            <div class="terminal-bar">
+              <span class="tb-dot red"></span>
+              <span class="tb-dot yellow"></span>
+              <span class="tb-dot green"></span>
+              <span class="tb-name">air_canva.py</span>
+            </div>
+            <pre class="terminal-code"><span class="tk">import</span> <span class="tm">cv2</span>, <span class="tm">mediapipe</span> <span class="tk">as</span> mp
+<span class="tk">import</span> <span class="tm">numpy</span> <span class="tk">as</span> np
+
+<span class="tc"># Initialize MediaPipe Hands</span>
+<span class="tv">hands</span> = mp.solutions.hands.<span class="tf">Hands</span>(
+  max_num_hands=<span class="tn">1</span>,
+  min_detection_confidence=<span class="tn">0.85</span>
+)
+
+<span class="tk">def</span> <span class="tf">get_landmark</span>(lm, idx):
+  <span class="tk">return</span> <span class="tv">lm</span>[idx].x, <span class="tv">lm</span>[idx].y
+
+<span class="tc"># Draw on canvas using index finger tip</span>
+canvas = np.<span class="tf">zeros</span>((height, width, <span class="tn">3</span>), dtype=np.uint8)</pre>
+          </div>
+
+          <div class="proj-stack">
+            <span class="tag-pill">Python</span>
+            <span class="tag-pill">OpenCV</span>
+            <span class="tag-pill">MediaPipe</span>
+            <span class="tag-pill">NumPy</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/siddharthnishkalan" target="_blank" class="btn-proj">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+          <!-- Floating CV badge -->
+          <div class="proj-badge">Computer Vision</div>
+        </article>
+
+        <!-- Project 2: Interview Guard -->
+        <article class="proj-card reveal-right" id="proj-guard">
+          <div class="proj-meta">
+            <span class="proj-num">02</span>
+            <span class="proj-status wip">In Development</span>
+          </div>
+          <h3 class="proj-title">INTERVIEW GUARD</h3>
+          <p class="proj-subtitle">Online Recruitment Integrity Platform</p>
+          <p class="proj-desc">
+            Web-based platform aimed at detecting proxy interviews and strengthening the integrity
+            of online recruitment processes. Focused on system architecture, feature scoping, 
+            and authenticity verification concepts.
+          </p>
+
+          <!-- Architecture block -->
+          <div class="proj-arch" id="arch-diagram">
+            <div class="arch-row">
+              <div class="arch-node" style="--d:0ms">Frontend</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node" style="--d:100ms">Auth API</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node" style="--d:200ms">Verify</div>
+            </div>
+            <div class="arch-row">
+              <div class="arch-node secondary" style="--d:300ms">Identity DB</div>
+              <div class="arch-arrow">↑</div>
+              <div class="arch-node secondary" style="--d:400ms">Recorder</div>
+              <div class="arch-arrow">↑</div>
+              <div class="arch-node secondary" style="--d:500ms">Flagging</div>
+            </div>
+          </div>
+
+          <div class="proj-stack">
+            <span class="tag-pill purple">Web Dev</span>
+            <span class="tag-pill purple">System Design</span>
+            <span class="tag-pill purple">Architecture</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/siddharthnishkalan" target="_blank" class="btn-proj purple">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+          <div class="proj-badge purple">System Design</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION ═══ -->
+  <section id="education" class="section">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-tag">// academic background</span>
+        <h2 class="section-title">EDUCATION</h2>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item reveal" data-year="2025–2029">
+          <div class="tl-dot"></div>
+          <div class="tl-card primary-card">
+            <div class="tl-badge">Current</div>
+            <div class="tl-degree">B.Tech — Information Technology</div>
+            <div class="tl-school">Sri Krishna College of Engineering and Technology</div>
+            <div class="tl-detail">
+              <span class="tl-cgpa">CGPA: <strong>9.45</strong></span>
+              <span class="tl-year">2025 – 2029</span>
+            </div>
+            <div class="tl-bar-wrap">
+              <div class="tl-bar" style="--w:94.5%"></div>
+              <span class="tl-bar-label">9.45 / 10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-year="2025">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-degree">Class XII — CBSE</div>
+            <div class="tl-school">Notre Dame Of Holy Cross</div>
+            <div class="tl-detail">
+              <span class="tl-cgpa">Score: <strong>90.4%</strong></span>
+              <span class="tl-year">2025</span>
+            </div>
+            <div class="tl-bar-wrap">
+              <div class="tl-bar" style="--w:90.4%"></div>
+              <span class="tl-bar-label">90.4%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-year="2023">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-degree">Class X — CBSE</div>
+            <div class="tl-school">Notre Dame Of Holy Cross</div>
+            <div class="tl-detail">
+              <span class="tl-cgpa">Score: <strong>88.8%</strong></span>
+              <span class="tl-year">2023</span>
+            </div>
+            <div class="tl-bar-wrap">
+              <div class="tl-bar" style="--w:88.8%"></div>
+              <span class="tl-bar-label">88.8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cert -->
+        <div class="timeline-item reveal" data-year="Cert">
+          <div class="tl-dot cert"></div>
+          <div class="tl-card cert-card">
+            <div class="tl-degree">NumPy and Pandas</div>
+            <div class="tl-school">Coursera Certification</div>
+            <div class="cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="section alt-bg">
+    <div class="section-inner about-grid">
+      <div class="about-left reveal-left">
+        <span class="section-tag">// about me</span>
+        <h2 class="section-title">WHO I AM</h2>
+        <p class="about-bio">
+          Motivated B.Tech IT student at SKCE, Salem, with a CGPA of 9.45. I combine a strong grasp of
+          Data Structures, OOP, and DBMS with hands-on project experience in Computer Vision using Python, 
+          OpenCV, and MediaPipe.
+        </p>
+        <p class="about-bio" style="margin-top:14px;">
+          I believe in learning by building — every project is a chance to bridge theory with the real world.
+          Currently exploring web development and system design through the Interview Guard platform.
+        </p>
+        <div class="about-contact-row">
+          <a href="mailto:s.siddharthnishkalan@gmail.com" class="abt-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            s.siddharthnishkalan@gmail.com
+          </a>
+          <a href="tel:+919345260598" class="abt-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.4 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +91 93452 60598
+          </a>
+          <a href="#" class="abt-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Salem, Tamil Nadu
+          </a>
+        </div>
+      </div>
+      <div class="about-right reveal-right">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num" data-count="9" data-decimal=".45">0</div>
+            <div class="stat-label">CGPA out of 10</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="2">0</div>
+            <div class="stat-label">Projects built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="10">0</div>
+            <div class="stat-label">Technologies used</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="1">0</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+        </div>
+
+        <!-- Languages spoken -->
+        <div class="lang-card reveal">
+          <div class="lang-item">
+            <span class="lang-name">Tamil</span>
+            <div class="lang-bar"><div class="lang-fill" style="--w:100%"></div></div>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <div class="lang-bar"><div class="lang-fill" style="--w:85%"></div></div>
+            <span class="lang-level">Professional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact" class="section">
+    <div class="section-inner contact-layout">
+
+      <!-- Left: info -->
+      <div class="contact-info reveal-left">
+        <span class="section-tag">// let's connect</span>
+        <h2 class="section-title">GET IN TOUCH</h2>
+        <p class="section-sub" style="margin-top:16px;">
+          Open to internships, collaborative projects, and new opportunities.
+          I typically reply within 24 hours.
+        </p>
+
+        <div class="contact-details">
+          <a href="mailto:s.siddharthnishkalan@gmail.com" class="cdetail">
+            <span class="cdetail-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </span>
+            s.siddharthnishkalan@gmail.com
+          </a>
+          <a href="tel:+919345260598" class="cdetail">
+            <span class="cdetail-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.4 1.27h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            +91 93452 60598
+          </a>
+          <a href="https://github.com/siddharthnishkalan" target="_blank" class="cdetail">
+            <span class="cdetail-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.23C5.8 21.14 5.07 19 5.07 19c-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.08 1.85 2.82 1.31 3.5.99.11-.78.42-1.3.77-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.57A12.02 12.02 0 0 0 24 12C24 5.37 18.63 0 12 0z"/></svg>
+            </span>
+            github.com/siddharthnishkalan
+          </a>
+          <a href="https://linkedin.com/in/siddharthnishkalan" target="_blank" class="cdetail">
+            <span class="cdetail-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </span>
+            linkedin.com/in/siddharthnishkalan
+          </a>
+        </div>
+
+        <!-- Live visitor / GitHub counters from API -->
+        <div class="api-counters">
+          <div class="api-counter">
+            <span class="api-num" id="visitor-count">…</span>
+            <span class="api-label">Visitors this month</span>
+          </div>
+          <div class="api-counter">
+            <span class="api-num" id="gh-repos">…</span>
+            <span class="api-label">Public repos</span>
+          </div>
+          <div class="api-counter">
+            <span class="api-num" id="gh-followers">…</span>
+            <span class="api-label">GitHub followers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact-form-wrap reveal-right">
+        <form id="contact-form" novalidate autocomplete="off">
+
+          <!-- Honeypot (hidden from humans, bots fill it) -->
+          <input type="text" name="website" tabindex="-1"
+                 style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true"/>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-name">Name *</label>
+              <input id="f-name" class="form-input" type="text" name="name"
+                     placeholder="Your full name" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-email">Email *</label>
+              <input id="f-email" class="form-input" type="email" name="email"
+                     placeholder="you@example.com" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-subject">Subject</label>
+            <input id="f-subject" class="form-input" type="text" name="subject"
+                   placeholder="Internship Enquiry / Project Collaboration / …"/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-message">Message *</label>
+            <textarea id="f-message" class="form-input form-textarea" name="message"
+                      placeholder="Tell me about your project or opportunity…" required></textarea>
+          </div>
+
+          <div id="form-status" class="form-status" style="display:none;"></div>
+
+          <button type="submit" class="form-submit-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <p class="form-note">Powered by Flask · Auto-reply sent to you · Stored securely</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">
+      <span class="brand-badge small">SN</span>
+      Siddharth Nishkalan S
+    </span>
+    <span class="footer-copy">Built with craft · 2024</span>
+    <span class="footer-loc">Salem, Tamil Nadu</span>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+</body>
+</html>
