@@ -138,7 +138,7 @@ Results cached for **10 minutes**.
 In `frontend/js/api.js`, update:
 
 ```js
-const API_BASE = 'http://localhost:5000'; // dev
+const API_BASE = 'https://portfolio-backend-j18h.onrender.com'; // dev
 // const API_BASE = 'https://your-deployed-api.com'; // prod
 ```
 

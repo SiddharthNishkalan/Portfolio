@@ -8,7 +8,7 @@
   'use strict';
 
   // ── Config ─────────────────────────────────────────────────────────────────
-  const API_BASE = 'https://siddharth-portfolio-backend.onrender.com';   // Change to deployed URL in prod
+  const API_BASE = 'https://portfolio-backend-j18h.onrender.com';   // Change to deployed URL in prod
   const TIMEOUT  = 8000;                       // 8 second request timeout
 
   // ── Fetch wrapper with timeout ─────────────────────────────────────────────
