@@ -21,8 +21,12 @@ def create_app(config_class=Config):
 
     # ── Extensions ──
     db.init_app(app)
-    CORS(app, origins=app.config["ALLOWED_ORIGINS"])
-
+    CORS(
+    app,
+    resources={r"/api/*": {"origins": app.config["ALLOWED_ORIGINS"]}},
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+)
     limiter = Limiter(
         get_remote_address,
         app=app,
